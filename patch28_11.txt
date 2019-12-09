@@ -1,0 +1,104 @@
+ZROBIONE - PROBLEM 1 (wywalalo gre, gdy lives -1)
+
+zmiana 
+	def f_repeat():
+	    if lives == 0 or complete == 1:
+		rep = input('Wanna play again? If YES - press Y, if NO press any other key! ').upper()
+		if rep == "Y":
+		    return 1
+		else:
+		    return 0
+
+na
+
+	def f_repeat():
+	    if lives <= 0 or complete == 1:
+		rep = input('Wanna play again? If YES - press Y, if NO press any other key! ').upper()
+		if rep == "Y":
+		    return 1
+		else:
+		    return 0
+
+ZROBIONE - PROBLEM 2 (brak final countdown gdy lives -1)
+
+zmiana 
+
+	def f_guess_word(word):
+	    global lives
+	    global complete
+	    guessed_word = input("\nPlease provide the word: ").upper()
+	    if word == guessed_word:
+		print("Success!")
+		complete = 1
+	    else:
+		lives -= 2
+		print("Wrong guess, you lost 2 lives.")
+		if lives == 0:
+		    f_final_countdown()
+		    print('The secret word was: ', word)
+
+na
+
+	def f_guess_word(word):
+	    global lives
+	    global complete
+	    guessed_word = input("\nPlease provide the word: ").upper()
+	    if word == guessed_word:
+		print("Success!")
+		complete = 1
+	    else:
+		lives -= 2
+		print("Wrong guess, you lost 2 lives.")
+		if lives <= 0:
+		    f_final_countdown()
+		    print('The secret word was: ', word)
+
+
+
+do spaczowania:
+
+PROBLEM 1 - WPROWADZENIE 2 ZNAKOW + ZLY KOMUNIKAT
+	Used letters:  ['S', 'P', 'O', 'DD']
+	Please type desired letter gg
+
+	<<That's a correct guess!>>
+
+	Wrong guess, you lost 1 live
+	Remaining lives:  
+
+ZROBIONE - PROBLEM 2 (POWTORZONA GRA) - ZOSTAWLA TABLICA I UZYTE LITERY Z POPRZEDNIEGO ZAPISU
+
+	Press '1' to start the game: 1
+
+	The word to guess is:  ['_', '_', '_', '_', '_']
+	Remaining lives:  6
+
+	Decide what to guess: (W)ord or (L)etter w
+
+	Please provide the word: fsafs
+	Wrong guess, you lost 2 lives.
+	Remaining lives:  4
+
+	Decide what to guess: (W)ord or (L)etter l
+
+	The word to guess:  ['S', 'O', 'P', 'O', '_']
+	Remaining lives:  4
+	Used letters:  ['F', 'P', 'O', 'S']
+	Please type desired letter s
+
+PROBLEM 3 - CYFRY DA SIE WPROWADZIC
+UWAGA - POWTORZONE WPROWADZENIE TEJ SAMEJ LITERY POWINNO WYWOLYWAC KOMUNIKAT ZE JUZ BYLA
+PROBLEM 4 - PO PROMPCIE ZE TYLKO W LUB L TO PRZEPUSCI DO L COKOLWIEK SIE WCISNIE
+
+You need to press W or L only 
+
+Decide what to guess: (W)ord or (L)etter T
+You need to press W or L only (tu wciskam enter)
+
+The word to guess:  ['S', 'O', 'P', 'O', '_']
+Remaining lives:  5
+Used letters:  ['L', 'O', 'S', 'P', 'O']
+Please type desired letter 
+
+PROBLEM 5 - JESLI STOLICA JEST 2 WYRAZ TO PEWNIE SPACJE POKAZE JAKO UKRYTE
+ZROBIONE - PROBLEM 6 - LICZBA "_" ZACZYTYWANA WG DLUGOSCI POPRZEDNIEGO, A NIE AKTUALNEGO SLOWA DO ZGADNIECIA (UPD. JEST TO RANDOM)
