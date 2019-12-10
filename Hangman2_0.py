@@ -2,7 +2,7 @@ import time
 import os
 import sys
 import random
-#play.py
+
 def f_dynamic_path_to_initial_list(file_name): 
     """This function allow us to open file with
     the list of cities without regard to location folder """
@@ -10,52 +10,22 @@ def f_dynamic_path_to_initial_list(file_name):
     list_file = dir_path+'/'+file_name
     return list_file
 
-
-#dir_path = os.path.dirname(__file__)
-#list_file = dir_path+'/countries-and-capitals.txt'
-#print("list_file:",list_file)
-#print("File path",dir_path)
-
-
-def f_mask_word(word):
-    #print("test: ", word)
-    masked_rand_word = ['_' for i in range(len(list(word)))]
-    #print("test: ", masked_rand_word)
-    return masked_rand_word
-
-
-# def f_clean_word(word):
-#     j = 1
-#     temp = []
-#     while j < len(word)-1:
-#         temp.append(word[j])
-#         j += 1
-#     str1 = ""
-#     for ele in temp:
-#         str1 += ele
-#     #print(str1)
-#     return str1
-
-
 def f_random_word():
     global word
     my_word_list_len = []
-    #do zrobenia f_sys.arg ktora zasysa sciezke scryptu, odejmuje nazwe skryptu
-    #podzial na liste? po / i odjecie ostatniego indexu
-    #file = open(dir_path + '/countries-and-capitals.txt', 'r')
     file = open(f_dynamic_path_to_initial_list("countries-and-capitals.txt"), 'r')
     word_list = file.readlines()
     my_word_list = []
     for line in word_list:
-        #print(line.split("|"))
         my_word_list.append(line.split('|'))
         my_word_list_len = len(my_word_list)
-        #print(my_word_list_len)
     word = (my_word_list[random.randint(1, my_word_list_len)][1].upper())
     file.close
     return word
 
-
+def f_mask_word(word):
+    masked_rand_word = ['_' for i in range(len(list(word)))]
+    return masked_rand_word
 
 def f_start_game():
     global again 
