@@ -10,16 +10,23 @@ def f_dynamic_path_to_initial_list(file_name):
     list_file = dir_path+'/'+file_name
     return list_file
 
+# def f_input_list_separation(word_list):
+#     #my_word_list_len = []
+#     for line in word_list:
+#         my_word_list.append(line.split('|'))
+#         #my_word_list_len = len(my_word_list)
+
+
 def f_random_word():
-    global word
-    my_word_list_len = []
+    #global word
+    #my_word_list_len = []
     file = open(f_dynamic_path_to_initial_list("countries-and-capitals.txt"), 'r')
     word_list = file.readlines()
     my_word_list = []
     for line in word_list:
         my_word_list.append(line.split('|'))
-        my_word_list_len = len(my_word_list)
-    word = (my_word_list[random.randint(1, my_word_list_len)][1].upper())
+        #my_word_list_len = len(my_word_list)
+    word = (my_word_list[random.randint(1, len(my_word_list))][1].upper())
     file.close
     return word
 
