@@ -10,28 +10,22 @@ def f_dynamic_path_to_initial_list(file_name):
     list_file = dir_path+'/'+file_name
     return list_file
 
-# def f_input_list_separation(word_list):
-#     #my_word_list_len = []
-#     for line in word_list:
-#         my_word_list.append(line.split('|'))
-#         #my_word_list_len = len(my_word_list)
-
-
-def f_random_word():
-    #global word
-    #my_word_list_len = []
+def f_get_word_list():
     file = open(f_dynamic_path_to_initial_list("countries-and-capitals.txt"), 'r')
     word_list = file.readlines()
-    my_word_list = []
+    splitted_word_list = []
     for line in word_list:
-        my_word_list.append(line.split('|'))
-        #my_word_list_len = len(my_word_list)
-    word = (my_word_list[random.randint(1, len(my_word_list))][1].upper())
+        splitted_word_list.append(line.split('|'))
     file.close
+    return splitted_word_list
+
+def f_random_word():
+    splitted_word_list = f_get_word_list()
+    word = (splitted_word_list[random.randint(1, len(splitted_word_list))][1].upper())
     return word
 
 def f_mask_word(word):
-    masked_rand_word = ['_' for i in range(len(list(word)))]
+    masked_rand_word = [ '_' for i in range(len(list(word)))]
     return masked_rand_word
 
 def f_start_game():
@@ -63,18 +57,9 @@ def f_start_game():
 
 def f_choice_word_or_letter():
     decission = input("\nDecide what to guess: (W)ord or (L)etter ").upper()
-    # print(decission)
-    while True:
-        if decission == "W":
-            #print(decission)
-            return decission
-        elif decission == "L":
-            decission = decission.upper()
-            #print(decission)
-            return decission
-        else:
-            decission = input("You need to press W or L only ").upper()
-            return decission
+    while decission not in {"W", "L"}:
+        decission = input("You can only press W or L. ").upper()
+    return decission    
 
 def f_guess_letter(word):
     global lives
@@ -163,15 +148,11 @@ def f_main():
 #word = ''
 word = ''
 
-#word = 'sopot'.upper()
-
-
 lives = 6
 used_letters = []
 
 
 complete = 0
 decission = 0
-#board = f_mask_word(word)
 board = []
 f_main()
