@@ -9,7 +9,7 @@ def f_mask_word(word):
     masked_rand_word = ['_' for i in range(len(list(word)))]
     #print("test: ", masked_rand_word)
     return masked_rand_word
-
+e
 
 def f_clean_word(word):
     j = 1
