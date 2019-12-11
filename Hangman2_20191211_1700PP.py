@@ -72,7 +72,7 @@ def f_prepare_initial_board():
 
 def f_print_actual_board(board, used_letters, lives):
     """parameters: board, used letters, lives"""
-    print('\nThe word to guess is: ' ,board)
+    print('\nThe word to guess is: ' ,*board, sep= ' ')
     print('Used letters: ', used_letters)
     print('Remaining lives: ' , lives)
     print('The word to guess is: ',word)
@@ -111,7 +111,9 @@ def f_guess_letter(word):
         print(index)
     if success == 0:
         print("\nWrong guess, you lost 1 live")
-        print(hangman_drawings[7-lives]) #returns the drawing, corresponding to the number of remainig lives 
+        while lives > 0:
+            print(hangman_drawings[7-lives])
+            break
         lives -= 1
     if list(word) == board:
         print("n/Yay! You won't be hanged today! ")
@@ -131,8 +133,10 @@ def f_guess_word(word):
     else:
         lives -= 2
         print("Wrong guess, you lost 2 lives.")
-        print(hangman_drawings[7-lives]) #returns the drawing, corresponding to the number of remainig lives
+        if lives > 0:
+            print(hangman_drawings[7-lives])
         if lives <= 0:
+            print(hangman_drawings[6])
             f_final_countdown()
             print('The secret word was: ', word)
 
@@ -162,7 +166,7 @@ def f_give_a_clue(country,lives):
         if ans == "Y":
             print(f"So this is the clue - the city you are looking for is the capital of {country}")
     else:
-        print("you dont deserve a clude")
+        print("you don't deserve a clue")
 
 def f_reset_main_counters():
     global complete 
@@ -188,7 +192,7 @@ def f_main():
         f_reset_main_counters()
         f_start_game()
         country,word,board = f_prepare_initial_board()
-        print(f"country, word, board {country} {word} {board}")
+        # print(f"country, word, board {country} {word} {board}")
         # system('cls')
         while (complete == 0) and (lives > 0):
             f_print_actual_board(board, used_letters, lives)
