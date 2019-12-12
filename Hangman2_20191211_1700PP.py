@@ -32,7 +32,7 @@ def f_get_word_list():
 def f_find_random_pair():
     splitted_word_list = f_get_word_list()
     pair = splitted_word_list[random.randint(0, len(splitted_word_list))]
-    print("z find random pair" ,pair)
+    #print("z find random pair" ,pair)
     #print("z find random pair" ,type(pair))
     return pair
 
@@ -41,7 +41,7 @@ def f_get_capital(pair):
     temp = pair
     #print("f_get_capital", temp)
     capital = str.strip(temp[1]).upper()
-    print(f" Capital is: {capital}")
+    #print(f" Capital is: {capital}")
     return capital
 
 def f_get_country(pair):
@@ -49,7 +49,7 @@ def f_get_country(pair):
     temp = pair
     #print(temp)
     country = str.strip(temp[0]).upper()
-    print(f"Country is: {country}")
+    #print(f"Country is: {country}")
     return country
 
 # def f_get_capital():
@@ -60,7 +60,7 @@ def f_get_country(pair):
 #     return word
 
 def f_mask_word(word):
-    masked_rand_word = [ '_' for i in range(len(list(word)))]
+    masked_rand_word = [' ' if i == " " else "_" for i in list(word)]
     return masked_rand_word
 
 def f_prepare_initial_board():
@@ -160,13 +160,15 @@ def f_repeat():
 def f_give_a_clue(country,lives):
     """paramters: country, lives. Gives a clue when lives <=3"""
     current_day=calendar.day_name[date.today().weekday()]
+    
     if lives <= 3:
         print(f"As we want hang you today, as this is {current_day}, so you can have a clue if you type \"Y\".")
         ans=input(f"So what is your decission? ").upper()
         if ans == "Y":
+
             print(f"So this is the clue - the city you are looking for is the capital of {country}")
     else:
-        print("you don't deserve a clue")
+        print("You still don't deserve a clue")
 
 def f_reset_main_counters():
     global complete 
@@ -263,4 +265,5 @@ hangman_drawings = ['''
  / \  |
       |
 =========''']
+print(f_mask_word("Kuala lumpur"))
 f_main()
