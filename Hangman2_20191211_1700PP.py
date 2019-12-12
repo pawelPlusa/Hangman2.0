@@ -108,7 +108,6 @@ def f_guess_letter(word):
             print("\nThat's a correct guess!")
             success += 1
         index += 1
-        print(index)
     if success == 0:
         print("\nWrong guess, you lost 1 live")
         while lives > 0:
@@ -165,8 +164,9 @@ def f_give_a_clue(country,lives):
         print(f"As we want hang you today, as this is {current_day}, so you can have a clue if you type \"Y\".")
         ans=input(f"So what is your decission? ").upper()
         if ans == "Y":
-
+            if_was_clue = 1
             print(f"So this is the clue - the city you are looking for is the capital of {country}")
+            return if_was_clue
     else:
         print("You still don't deserve a clue")
 
@@ -189,6 +189,7 @@ def f_main():
     global board #needed to be set here otherwise if game was repeated f_guess word was giving board with guessed earlier signs, should be again covered
     global used_letters #same reason as with board line above
     again = 1
+    clue = 0
     # board = f_mask_word(word)
     while again == 1:
         f_reset_main_counters()
@@ -198,7 +199,8 @@ def f_main():
         # system('cls')
         while (complete == 0) and (lives > 0):
             f_print_actual_board(board, used_letters, lives)
-            f_give_a_clue(country, lives)
+            if clue != 1:
+                clue = f_give_a_clue(country, lives)
             decission = f_choice_word_or_letter()
             if decission == 'W':
                 f_guess_word(word)
